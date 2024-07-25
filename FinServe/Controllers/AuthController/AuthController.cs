@@ -2,11 +2,14 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FinServe.Controllers
 {
     [Route("api/[controller]")]
+    // [Authorize]
     [ApiController]
+    
     public class AuthController : ControllerBase
     {
         private readonly IUserService _userService;
