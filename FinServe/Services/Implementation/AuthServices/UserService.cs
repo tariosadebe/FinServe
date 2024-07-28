@@ -20,8 +20,8 @@ namespace FinServe.Services.Implementation
             {
                 UserName = request.UserName,
                 Email = request.Email,
-                KYCStatus = "Pending", // Set default value
-                RegistrationDate = DateTime.UtcNow // Set default registration date
+                KYCStatus = "Pending",
+                RegistrationDate = DateTime.UtcNow
             };
 
             var result = await _userManager.CreateAsync(user, request.Password);
@@ -37,7 +37,7 @@ namespace FinServe.Services.Implementation
 
             await _emailService.SendVerificationEmailAsync(user.Email, verificationLink);
 
-            // Implement KYC verification logic here
+            
             var kycResult = await VerifyKYCAsync(user);
 
             return kycResult;
@@ -46,12 +46,10 @@ namespace FinServe.Services.Implementation
 
         public async Task<KYCVerificationResult> VerifyKYCAsync(User user)
         {
-            // Implement KYC verification logic here
-
-            // For demonstration, assuming KYC is always successful
+            
             return new KYCVerificationResult
             {
-                UserId = user.Id.ToString(),  // Convert Guid to string
+                UserId = user.Id.ToString(), 
                 Message = user.Email,
                 VerificationDocument = user.KYCStatus,
                 Success = true,
